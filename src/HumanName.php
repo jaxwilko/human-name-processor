@@ -47,7 +47,7 @@ class HumanName
         return $this->title;
     }
     
-    public function setTitle(string $title): HumanName
+    public function setTitle(string $title = null): HumanName
     {
         $this->title = $title;
 
@@ -59,7 +59,7 @@ class HumanName
         return $this->firstName;
     }
     
-    public function setFirstName(string $firstName): HumanName
+    public function setFirstName(string $firstName = null): HumanName
     {
         $this->firstName = $firstName;
 
@@ -71,7 +71,7 @@ class HumanName
         return $this->lastName;
     }
     
-    public function setLastName(string $lastName): HumanName
+    public function setLastName(string $lastName = null): HumanName
     {
         $this->lastName = $lastName;
 
