@@ -61,13 +61,22 @@ final class CompilerTest extends TestCase
         $this->assertEquals('Smith', $name->getLastName());
     }
 
-    public function testCanParseAdditionalLastNames(): void
+    public function testCanParseAdditionalGivenNames(): void
     {
         $test = 'Mr. John Smith the Third';
         $name = $this->processor->make($test);
         $this->assertEquals('Mr.', $name->getTitle());
+        $this->assertEquals('John Smith the', $name->getFirstName());
+        $this->assertEquals('Third', $name->getLastName());
+    }
+
+    public function testCanParseFirstNameOnly(): void
+    {
+        $test = 'John';
+        $name = $this->processor->make($test);
+        $this->assertEquals(null, $name->getTitle());
         $this->assertEquals('John', $name->getFirstName());
-        $this->assertEquals('Smith the Third', $name->getLastName());
+        $this->assertEquals(null, $name->getLastName());
     }
 
     public function testCanRetainCasing(): void
@@ -75,7 +84,7 @@ final class CompilerTest extends TestCase
         $test = 'Mr. John Smith the third';
         $name = $this->processor->make($test);
         $this->assertEquals('Mr.', $name->getTitle());
-        $this->assertEquals('John', $name->getFirstName());
-        $this->assertEquals('Smith the third', $name->getLastName());
+        $this->assertEquals('John Smith the', $name->getFirstName());
+        $this->assertEquals('third', $name->getLastName());
     }
 }

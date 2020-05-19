@@ -22,6 +22,10 @@ class HumanNameProcessor
             return null;
         }
 
+        if (count($elements) === 1) {
+            return $name->setFirstName($elements[0]);
+        }
+
         $lowerFirst = strtolower($elements[0]);
 
         if (isset($this->titles[$lowerFirst])) {
@@ -31,7 +35,7 @@ class HumanNameProcessor
         }
 
         if (count($elements) !== 1) {
-            $name->setFirstName(array_splice($elements, 0, 1)[0]);
+            $name->setFirstName(implode(' ', array_splice($elements, 0, -1)));
         }
 
         $name->setLastName(implode(' ', $elements));
